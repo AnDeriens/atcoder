@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+
+n, s = input().split()
+n = int(n)
+
+ans = 0
+
+
+
+# length
+for l in range(2, n + 2, 2):
+    _s = s[0:l]
+    no_a = _s.count('A')
+    no_t = _s.count('T')
+    no_g = _s.count('G')
+    no_c = _s.count('C')
+
+    if no_a == no_t and no_g == no_c:
+        ans += 1
+
+    # start
+    for i in range(0, n - l):
+        sub_str = s[i]
+        add_str = s[i+l]
+
+        if sub_str == 'A':
+            no_a -= 1
+        if sub_str == 'T':
+            no_t -= 1
+        if sub_str == 'G':
+            no_g -= 1
+        if sub_str == 'C':
+            no_c -= 1
+
+        if add_str == 'A':
+            no_a += 1
+        if add_str == 'T':
+            no_t += 1
+        if add_str == 'G':
+            no_g += 1
+        if add_str == 'C':
+            no_c += 1
+
+        if no_a == no_t and no_g == no_c:
+            ans += 1
+
+print(ans)
+
