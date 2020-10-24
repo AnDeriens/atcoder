@@ -1,0 +1,29 @@
+n, m = list(map(int, input().split()))
+a = [0] + list(map(int, input().split()))
+b = [0] + list(map(int, input().split()))
+
+next_index = 0
+edges = [[] for _ in range(m)] 
+mentioned = [-1] * (n + 1)
+
+for i in range(m):
+    c, d = list(map(int, input().split()))
+
+    if mentioned[c] == -1 and mentioned[d] == -1:
+        edges[next_index] = [c, d]
+        mentioned[c] = next_index
+        mentioned[d] = next_index
+        next_index += 1
+        continue
+
+    for j in range(1, next_index):
+        for dot in edges[j]:
+            if dot == c and mentioned[d] != -1:
+                edges[j].append(d)
+                mentioned[d] = j
+            if dot == d and mentioned[c] != -1:
+                edges[j].append(c)
+                mentioned[c] = j
+
+
+print(edges)                
