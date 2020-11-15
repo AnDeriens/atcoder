@@ -1,0 +1,40 @@
+n = input()
+
+s = sum(list(map(int, list(n))))
+
+if s % 3 == 0:
+    print(0)
+    exit()
+
+sub_n = ''
+sub_s = 0
+for _n in list(n):
+    _n = int(_n) % 3
+    if _n != 0:
+        sub_n += str(_n)
+        sub_s += _n
+
+if sub_s % 3 == 1:
+    cnt_2 = 0
+    for _s in sub_n:
+        if int(_s) == 1 and len(n) != 1:
+            print(1)
+            exit()
+        else:
+            cnt_2 += 1
+            if cnt_2 == 2 and len(n) != 2:
+                print(2)
+                exit()
+elif sub_s % 3 == 2:
+    cnt_1 = 0
+    for _s in sub_n:
+        if int(_s) == 2 and len(n) != 1:
+            print(1)
+            exit()
+        else:
+            cnt_1 += 1
+            if cnt_1 == 2 and len(n) != 2:
+                print(2)
+                exit()
+
+print(-1)

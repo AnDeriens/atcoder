@@ -1,0 +1,10 @@
+n = int(input())
+s = input()
+
+melt = 0
+
+for i in range(n - 1):
+    if s[i] == s[i + 1]:
+        melt += 1
+
+print(n - melt)
