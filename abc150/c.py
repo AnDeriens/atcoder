@@ -1,15 +1,30 @@
+import itertools
+
 n = int(input())
 p = list(map(int, input().split()))
 q = list(map(int, input().split()))
 
-ans = 0
+al = itertools.permutations(range(1, n + 1))
 
-for i in range(n):
-    diff = p[n - i - 1] - q[n - i - 1]
-    print(diff)
-    if diff > 0:
-        ans += (n - 1) ** i * abs(diff)
-    elif diff < 0:
-        ans -= (n - 1) ** i * abs(diff)
+a = 0
+b = 0
+i = 0
+for v in al:
+    i += 1
+    same_p = True
+    same_q = True
+    v = list(v)
+    for j in range(n):
+        if v[j] != p[j]: 
+            same_p = False
+            break
+    if same_p:
+        a = i
 
-print(abs(ans))
+    for j in range(n):
+        if v[j] != q[j]: 
+            same_q = False
+            break
+    if same_q:
+        b = i
+print(abs(a - b))
