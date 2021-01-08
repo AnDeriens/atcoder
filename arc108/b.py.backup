@@ -1,0 +1,41 @@
+n = int(input())
+s = input()
+
+def cnt_fox(s, i, cnt):
+    if s[i] == 'f':
+        if s[i + 1] == 'o':
+            if s[i + 2] == 'x':
+                cnt += 1
+                return [cnt, i + 3] 
+            elif s[i + 2] == 'f':
+                return cnt_fox(s, i + 2, cnt)
+            else:
+                return [cnt, i + 3]
+
+        elif s[i + 1] == 'f':
+            cnt, i = cnt_fox(s, i + 1, cnt)
+            if s[i + 1] == 'o':
+                if s[i + 2] == 'x':
+                    cnt += 1
+                    return [cnt, i + 3] 
+                elif s[i + 2] == 'f':
+                    cnt, i = cnt_fox(s, i + 2, cnt)
+                    return [cnt, i]
+                else:
+                    return [cnt, i + 3]
+            else:
+                return [cnt, i + 2]
+
+        else:
+            return [cnt, i + 2]
+    else:
+        return [cnt, i + 1]
+
+ans = 0
+i = 0
+while i < n - 3:
+    cnt, i = cnt_fox(s, i, 0)
+    print(cnt, i)
+    ans += cnt
+
+print(n - ans * 3)

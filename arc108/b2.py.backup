@@ -1,0 +1,25 @@
+n = int(input())
+s = input()
+
+cnt = 0
+session = 0
+sub_session = 0
+for i in range(n):
+    if s[i] == 'f':
+        session += 1
+    elif session > 0 and s[i] == 'o':
+        sub_session += 1
+        continue
+    elif session > 0 and s[i] == 'x':
+        if sub_session > 0:
+            cnt += 1
+            session -= 1
+            sub_session -= 1
+        else:
+            session = 0
+            sebsession = 0
+    else:
+        session = 0
+        sebsession = 0
+
+print(n - cnt * 3)
